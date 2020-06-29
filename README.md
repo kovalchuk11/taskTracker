@@ -1,9 +1,10 @@
-##Note for the reviewer
+## Note for the reviewer
 I will be very grateful if you write to me what needs to be fixed here. So that I can improve my skill.
 https://www.linkedin.com/in/ivan-kovalchuk-7740a511a/
-#API
 
-####The project was deployed to heroku
+# API
+
+#### The project was deployed to heroku
 https://nameless-falls-13226.herokuapp.com/
 
 All requests you can send to this server
@@ -22,7 +23,7 @@ All requests you can send to this server
     "password": "password"
 }
 ```
- - ####login 
+ - #### Login 
  /login
  POST requests with body: 
 ```json
@@ -33,15 +34,15 @@ All requests you can send to this server
 ```
 A token will come from the server. He is in Header. Token example:
 `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb21lbmFtZSIsImF1dGhvcml0aWVzIjpbXSwiaWF0IjoxNTkzNDI1MTUzLCJleHAiOjE1OTQyNTI4MDB9.S_5V7B_nifFs186v0Zo8lI4dupL-CvoN368hKJPYdtf_G4ANObbdW1j6K8pyB4lP5NrMJUIHCJ3e5t7Ve2K02A`
-#####For all of the following requests, you will need a token.
+##### For all of the following requests, you will need a token.
 Be sure to insert token into the request header. Example:
-######Header Key:
+###### Header Key:
 Authorization
 
-######Authorization value: 
+###### Authorization value: 
 Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb21lbmFtZSIsImF1dGhvcml0aWVzIjpbXSwiaWF0IjoxNTkzNDI1MTUzLCJleHAiOjE1OTQyNTI4MDB9.S_5V7B_nifFs186v0Zo8lI4dupL-CvoN368hKJPYdtf_G4ANObbdW1j6K8pyB4lP5NrMJUIHCJ3e5t7Ve2K02A
 
- - ####Update user
+ - #### Update user
 /api/user/updateUser
 PUT requests with body: 
 Indicate user id and data for editing
@@ -54,7 +55,7 @@ Indicate user id and data for editing
     "password": "password"
 }
 ```
- - ####Delete user
+ - #### Delete user
 /api/user/deleteUser
 
 DELETE requests with body: 
@@ -64,7 +65,7 @@ Indicate user id  for deleting
     "userId": 1
 }
 ```
- - ####Get user
+ - #### Get user
 /api/user/getUser
 
 POST requests with body: 
@@ -75,7 +76,7 @@ Indicate user id
     "userId": 1
 }
 ```
- - ####Get users list
+ - #### Get users list
  pagination has not yet been implemented 
  POST requests with body: 
 /api/user/getUsers
@@ -86,7 +87,7 @@ Indicate user id
 ```
  ## - Task endpoint:
  
- - ####Add new Task
+ - #### Add new Task
  /api/task/add
  When creating a task, it is assigned to its creator
  PUT requests with body:
@@ -97,7 +98,7 @@ Indicate user id
     "description": "some description"
 }
 ```
- - ####Update task
+ - #### Update task
 /api/task/updateTask
  PUT requests with body:
   ```json
@@ -108,7 +109,7 @@ Indicate user id
     "description": "some else description"
 }
 ```
- - ####Delete task
+ - #### Delete task
 /api/task/deleteTask
  DELETE requests with task id in body:
   ```json
