@@ -58,9 +58,7 @@ public class UserController {
 
     @PostMapping("/getUsers")
     public ResponseEntity getUsers(@RequestBody SignupRequest signUpRequest){
-        if (signUpRequest.getUserId() == null){
-            return ResponseEntity.badRequest().body(new MessageResponse("userId can't be null"));
-        }
+
         return ResponseEntity.ok(userDaoImpl.getAllUsers());
     }
 }
