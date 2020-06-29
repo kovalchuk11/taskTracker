@@ -31,7 +31,7 @@ public class TaskController {
         this.taskUserDaoImpl = taskUserDaoImpl;
     }
 
-    @PostMapping("/add")
+    @PutMapping("/add")
     public ResponseEntity createTask(@Valid @RequestBody TaskRequest taskRequest, @RequestHeader("Authorization") String authorization){
         if(!RequestVerifier.isTaskStatusExist(taskRequest.getStatus())){
             return ResponseEntity.badRequest().body(new MessageResponse("That status is not exist: " + taskRequest.getStatus()));
