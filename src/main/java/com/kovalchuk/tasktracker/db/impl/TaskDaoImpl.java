@@ -6,14 +6,11 @@ import com.kovalchuk.tasktracker.request.ChangeTaskStatusRequest;
 import com.kovalchuk.tasktracker.request.TaskRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -48,7 +45,7 @@ public class TaskDaoImpl implements TaskDao {
             statement.setString(3, taskRequest.getTitle());
             return statement;
         }, keyHolder);
-        return (int)keyHolder.getKeys().get("id");
+        return (int) keyHolder.getKeys().get("id");
     }
 
     @Override

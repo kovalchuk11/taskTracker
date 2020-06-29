@@ -58,7 +58,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUser(long userId) {
-        User user =  jdbcTemplate.queryForObject(GET_USER_BY_ID_SQL, new Object[]{userId}, (rs, rowNum) ->
+        User user = jdbcTemplate.queryForObject(GET_USER_BY_ID_SQL, new Object[]{userId}, (rs, rowNum) ->
                 new User(rs.getLong(USER_ID)
                         , rs.getString(USERNAME)
                         , rs.getString(FIRST_NAME)
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserByUsername(String username) {
-        return (User)jdbcTemplate.queryForObject(SELECT_USER_BY_USERNAME, new Object[]{username}, new BeanPropertyRowMapper(User.class));
+        return (User) jdbcTemplate.queryForObject(SELECT_USER_BY_USERNAME, new Object[]{username}, new BeanPropertyRowMapper(User.class));
     }
 
     @Override

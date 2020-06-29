@@ -1,9 +1,7 @@
 package com.kovalchuk.tasktracker.db.dao;
 
 import com.kovalchuk.tasktracker.db.models.Task;
-import com.kovalchuk.tasktracker.db.models.User;
 import com.kovalchuk.tasktracker.request.ChangeTaskStatusRequest;
-import com.kovalchuk.tasktracker.request.SignupRequest;
 import com.kovalchuk.tasktracker.request.TaskRequest;
 
 import java.util.List;

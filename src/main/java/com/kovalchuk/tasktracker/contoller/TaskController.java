@@ -32,8 +32,8 @@ public class TaskController {
     }
 
     @PutMapping("/add")
-    public ResponseEntity createTask(@Valid @RequestBody TaskRequest taskRequest, @RequestHeader("Authorization") String authorization){
-        if(!RequestVerifier.isTaskStatusExist(taskRequest.getStatus())){
+    public ResponseEntity createTask(@Valid @RequestBody TaskRequest taskRequest, @RequestHeader("Authorization") String authorization) {
+        if (!RequestVerifier.isTaskStatusExist(taskRequest.getStatus())) {
             return ResponseEntity.badRequest().body(new MessageResponse("That status is not exist: " + taskRequest.getStatus()));
         }
 
@@ -47,41 +47,30 @@ public class TaskController {
 
         taskUserDaoImpl.addTaskToUser(taskId, userId);
 
-        return ResponseEntity.ok(new MessageResponse(taskRequest.toString() + " assigned to "  + username));
+        return ResponseEntity.ok(new MessageResponse(taskRequest.toString() + " assigned to " + username));
     }
 
 
     @PutMapping("/updateTask")
-    public ResponseEntity updateUser(@Valid @RequestBody TaskRequest taskRequest){
-        if(taskRequest.getId() == null){
+    public ResponseEntity updateUser(@Valid @RequestBody TaskRequest taskRequest) {
+        if (taskRequest.getId() == null) {
             return ResponseEntity.badRequest().body(new MessageResponse("Task Id cant be 0"));
         }
-        if(!RequestVerifier.isTaskStatusExist(taskRequest.getStatus())){
+        if (!RequestVerifier.isTaskStatusExist(taskRequest.getStatus())) {
             return ResponseEntity.badRequest().body(new MessageResponse("That status is not exist: " + taskRequest.getStatus()));
         }
-         taskDaoImpl.updateTask(taskRequest);
+        taskDaoImpl.updateTask(taskRequest);
 
         return ResponseEntity.ok(new MessageResponse("Task updated"));
     }
 
     @DeleteMapping("/deleteTask")
-    public ResponseEntity deleteUser(@RequestBody TaskRequest taskRequest){
-        if(taskRequest.getId() == null){
+    public ResponseEntity deleteUser(@RequestBody TaskRequest taskRequest) {
+        if (taskRequest.getId() == null) {
             return ResponseEntity.badRequest().body(new MessageResponse("Task Id cant be 0"));
         }
         taskDaoImpl.deleteTask(taskRequest.getId());
         return ResponseEntity.ok(new MessageResponse("Task deleted"));
     }
-//
-//    @PostMapping("/getUser")
-//    public ResponseEntity getUserById(@PathVariable(name = "id") Long id){
-//        return null;
-//    }
-//
-//    @PostMapping("/getUser")
-//    public ResponseEntity getUsers(@PathVariable(name = "pagination") int pagination){
-//        return null;
-//    }
-
 
 }
