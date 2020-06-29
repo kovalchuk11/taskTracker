@@ -1,6 +1,6 @@
 ##Note for the reviewer
 I will be very grateful if you write to me what needs to be fixed here. So that I can improve my skill.
-
+https://www.linkedin.com/in/ivan-kovalchuk-7740a511a/
 #API
 
 ####The project was deployed to heroku
