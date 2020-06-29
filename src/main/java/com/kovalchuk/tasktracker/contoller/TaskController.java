@@ -5,7 +5,6 @@ import com.kovalchuk.tasktracker.db.impl.TaskUserDaoImpl;
 import com.kovalchuk.tasktracker.db.impl.UserDaoImpl;
 import com.kovalchuk.tasktracker.jwt.JwtConfig;
 import com.kovalchuk.tasktracker.jwt.JwtTokenVerifier;
-import com.kovalchuk.tasktracker.request.SignupRequest;
 import com.kovalchuk.tasktracker.request.TaskRequest;
 import com.kovalchuk.tasktracker.response.MessageResponse;
 import io.jsonwebtoken.Claims;
