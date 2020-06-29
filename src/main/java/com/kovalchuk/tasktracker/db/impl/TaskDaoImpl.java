@@ -3,8 +3,10 @@ package com.kovalchuk.tasktracker.db.impl;
 import com.kovalchuk.tasktracker.db.dao.TaskDao;
 import com.kovalchuk.tasktracker.db.models.Task;
 import com.kovalchuk.tasktracker.request.ChangeTaskStatusRequest;
+import com.kovalchuk.tasktracker.request.GetTaskRequest;
 import com.kovalchuk.tasktracker.request.TaskRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -25,6 +27,7 @@ public class TaskDaoImpl implements TaskDao {
     private static final String UPDATE_TASK_SQL = String.format("UPDATE TRACKER.TASKS SET %s = (?), %s = (?), %s = (?) WHERE %s = (?);", STATUS, DESCRIPTION, TITLE, ID);
     private static final String DELETE_TASK_SQL = String.format("DELETE FROM TRACKER.TASKS WHERE %s = (?);", ID);
     private static final String INSERT_TASK_SQL = String.format("INSERT INTO TRACKER.TASKS (%s, %s, %s) VALUES (?,?,?);", STATUS, DESCRIPTION, TITLE);
+    private static final String SELECT_TASKS_BY_STATUS_SQL = String.format("SELECT * FROM TRACKER.TASKS WHERE %s = ?;", STATUS);
 
     final JdbcTemplate jdbcTemplate;
 
@@ -63,10 +66,7 @@ public class TaskDaoImpl implements TaskDao {
         return jdbcTemplate.update(DELETE_TASK_SQL, taskId);
     }
 
-    @Override
-    public Task getTask(long taskId) {
-        return null;
-    }
+
 
     @Override
     public List<Task> getAllTasks() {

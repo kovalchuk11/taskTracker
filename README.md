@@ -144,7 +144,18 @@ Indicate user id
 
 
  - #### Getting a list of tasks
- in the process of development.
+/api/task/getTasks
+
+Sorting by new / old users by'desc' or 'asc'
+
+ POST requests with body:
+ 
+   ```json
+ {
+     "status": "Done",
+     "orderType": "desc"
+ }
+ ```
  
  - #### Change the user to whom the task is assigned
  

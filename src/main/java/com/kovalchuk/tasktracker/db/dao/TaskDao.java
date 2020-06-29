@@ -15,7 +15,7 @@ public interface TaskDao {
 
     int deleteTask(long taskId);
 
-    Task getTask(long taskId);
+
 
     List<Task> getAllTasks();
 }

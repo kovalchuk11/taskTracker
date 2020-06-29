@@ -5,6 +5,7 @@ import com.kovalchuk.tasktracker.db.impl.TaskUserDaoImpl;
 import com.kovalchuk.tasktracker.db.impl.UserDaoImpl;
 import com.kovalchuk.tasktracker.jwt.JwtConfig;
 import com.kovalchuk.tasktracker.jwt.JwtTokenVerifier;
+import com.kovalchuk.tasktracker.request.GetTaskRequest;
 import com.kovalchuk.tasktracker.request.TaskRequest;
 import com.kovalchuk.tasktracker.response.MessageResponse;
 import io.jsonwebtoken.Claims;
@@ -71,6 +72,18 @@ public class TaskController {
         }
         taskDaoImpl.deleteTask(taskRequest.getId());
         return ResponseEntity.ok(new MessageResponse("Task deleted"));
+    }
+
+    @PostMapping("/getTasks")
+    public ResponseEntity getTasks(@Valid @RequestBody GetTaskRequest taskRequest) {
+        if (!RequestVerifier.isTaskStatusExist(taskRequest.getStatus())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("That status is not exist: " + taskRequest.getStatus()));
+        }
+        if (!RequestVerifier.isOrderTypeExist(taskRequest.getOrderType())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("That order type is not exist: " + taskRequest.getOrderType()));
+        }
+
+        return ResponseEntity.ok(taskUserDaoImpl.getTasks(taskRequest));
     }
 
 }
