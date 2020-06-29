@@ -13,6 +13,7 @@ All requests you can send to this server
  ### - User endpoint:   
  - ####registration 
  /api/user/signup
+ 
  POST requests with body: 
 ```json
 {
@@ -25,6 +26,7 @@ All requests you can send to this server
 ```
  - #### Login 
  /login
+ 
  POST requests with body: 
 ```json
 {
@@ -32,7 +34,8 @@ All requests you can send to this server
     "password": "password"
 }
 ```
-A token will come from the server. He is in Header. Token example:
+A token will come from the server. He is in Header. 
+Token example:
 `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb21lbmFtZSIsImF1dGhvcml0aWVzIjpbXSwiaWF0IjoxNTkzNDI1MTUzLCJleHAiOjE1OTQyNTI4MDB9.S_5V7B_nifFs186v0Zo8lI4dupL-CvoN368hKJPYdtf_G4ANObbdW1j6K8pyB4lP5NrMJUIHCJ3e5t7Ve2K02A`
 ##### For all of the following requests, you will need a token.
 Be sure to insert token into the request header. Example:
@@ -44,7 +47,9 @@ Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb21lbmFtZSIsImF1dGhvcml0aWVzIjpbXSwiaWF0
 
  - #### Update user
 /api/user/updateUser
-PUT requests with body: 
+
+PUT requests with body:
+ 
 Indicate user id and data for editing
 ```json
 {
@@ -58,7 +63,8 @@ Indicate user id and data for editing
  - #### Delete user
 /api/user/deleteUser
 
-DELETE requests with body: 
+DELETE requests with body:
+ 
 Indicate user id  for deleting
 ```json
 {
@@ -68,7 +74,8 @@ Indicate user id  for deleting
  - #### Get user
 /api/user/getUser
 
-POST requests with body: 
+POST requests with body:
+ 
 Indicate user id 
 
 ```json
@@ -77,9 +84,11 @@ Indicate user id
 }
 ```
  - #### Get users list
- pagination has not yet been implemented 
- POST requests with body: 
-/api/user/getUsers
+ pagination has not yet been implemented
+  
+ /api/user/getUsers
+ 
+ POST requests with body:
 ```json
 {
     "pagination": 1
@@ -89,7 +98,9 @@ Indicate user id
  
  - #### Add new Task
  /api/task/add
+ 
  When creating a task, it is assigned to its creator
+ 
  PUT requests with body:
  ```json
  {
@@ -100,6 +111,7 @@ Indicate user id
 ```
  - #### Update task
 /api/task/updateTask
+
  PUT requests with body:
   ```json
  {
@@ -111,6 +123,7 @@ Indicate user id
 ```
  - #### Delete task
 /api/task/deleteTask
+
  DELETE requests with task id in body:
   ```json
  {
