@@ -11,7 +11,7 @@ All requests you can send to this server
 
 
  ### - User endpoint:   
- - ####registration 
+ - #### registration 
  /api/user/signup
  
  POST requests with body: 
