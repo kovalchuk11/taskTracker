@@ -2,6 +2,17 @@
 I will be very grateful if you write to me what needs to be fixed here. So that I can improve my skill.
 https://www.linkedin.com/in/ivan-kovalchuk-7740a511a/
 
+## Before running Locally
+
+Сreate a schema and tables. The script is located in the resources folder.
+
+### Used technologies
+
+- Spring Boot
+- Spring Security
+- Spring jdbctemplate
+- JWT
+
 # API
 
 #### The project was deployed to heroku
@@ -130,3 +141,15 @@ Indicate user id
     "id": 1
 }
 ```
+
+
+ - #### Getting a list of tasks
+ in the process of development.
+ 
+ - #### Change the user to whom the task is assigned
+ 
+  in the process of development.
+  
+  
+  Be sure that I know how to implement unresolved features. Unfortunately, there was not enough time for them and tests. I would be very grateful if you looked at the code and write me what needs to be fixed. Professional opinion is very important to me.
+  
