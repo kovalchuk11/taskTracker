@@ -24,7 +24,7 @@ create table tracker.users_tasks
     users_tasks_id serial not null
         constraint users_tasks_pkey
             primary key,
-    user_id integer not null
+    user_id integer not null unique
         constraint users_tasks_user_id_fkey
             references tracker.users (user_id)
             on update cascade on delete cascade,

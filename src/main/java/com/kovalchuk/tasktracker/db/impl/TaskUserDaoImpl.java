@@ -3,6 +3,7 @@ package com.kovalchuk.tasktracker.db.impl;
 import com.kovalchuk.tasktracker.db.dao.TaskUserDao;
 import com.kovalchuk.tasktracker.db.models.TaskUser;
 import com.kovalchuk.tasktracker.request.GetTaskRequest;
+import com.kovalchuk.tasktracker.request.TaskUserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -26,6 +27,7 @@ public class TaskUserDaoImpl implements TaskUserDao {
             "ON USERS_TASKS.USER_ID = USERS.USER_ID\n" +
             "WHERE TASKS.STATUS = ?\n" +
             "ORDER BY USERS.REGISTRATION_DATE " + "%s";
+    private static final String UPDATE_TASK_USER_SQL = String.format("UPDATE TRACKER.USERS_TASKS SET %s = (?) WHERE %s = (?);",USER_ID, TASK_ID);
 
     final JdbcTemplate jdbcTemplate;
 
@@ -37,6 +39,11 @@ public class TaskUserDaoImpl implements TaskUserDao {
     @Override
     public int addTaskToUser(long taskId, long userId) {
         return jdbcTemplate.update(INSERT_USERS_TASKS_SQL, taskId, userId);
+    }
+
+    @Override
+    public int changeTaskResponsible(TaskUserRequest taskUserRequest) {
+        return jdbcTemplate.update(UPDATE_TASK_USER_SQL, taskUserRequest.getUserId(), taskUserRequest.getTaskId());
     }
 
     @Override

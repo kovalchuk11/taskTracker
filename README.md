@@ -144,13 +144,14 @@ Indicate user id
 
 
  - #### Getting a list of tasks
+ 
 /api/task/getTasks
 
 Sorting by new / old users by'desc' or 'asc'
 
  POST requests with body:
  
-   ```json
+```json
  {
      "status": "Done",
      "orderType": "desc"
@@ -159,8 +160,15 @@ Sorting by new / old users by'desc' or 'asc'
  
  - #### Change the user to whom the task is assigned
  
-  in the process of development.
+ /api/task/changeTaskResponsible
+ 
+  PUT requests with body:
+```json
+{
+    "taskId": 5,
+    "userId": 7
+}
+```
   
-  
- I would be very grateful if you looked at the code and write me what needs to be fixed. Professional opinion is very important to me.
+ I would be very grateful if you looked at the code and write me what needs to be fixed. Professional opinion is very important for me.
   

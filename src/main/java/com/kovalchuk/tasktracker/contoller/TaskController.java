@@ -7,6 +7,7 @@ import com.kovalchuk.tasktracker.jwt.JwtConfig;
 import com.kovalchuk.tasktracker.jwt.JwtTokenVerifier;
 import com.kovalchuk.tasktracker.request.GetTaskRequest;
 import com.kovalchuk.tasktracker.request.TaskRequest;
+import com.kovalchuk.tasktracker.request.TaskUserRequest;
 import com.kovalchuk.tasktracker.response.MessageResponse;
 import io.jsonwebtoken.Claims;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +54,7 @@ public class TaskController {
 
 
     @PutMapping("/updateTask")
-    public ResponseEntity updateUser(@Valid @RequestBody TaskRequest taskRequest) {
+    public ResponseEntity updateTask(@Valid @RequestBody TaskRequest taskRequest) {
         if (taskRequest.getId() == null) {
             return ResponseEntity.badRequest().body(new MessageResponse("Task Id cant be 0"));
         }
@@ -66,7 +67,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/deleteTask")
-    public ResponseEntity deleteUser(@RequestBody TaskRequest taskRequest) {
+    public ResponseEntity deleteTask(@RequestBody TaskRequest taskRequest) {
         if (taskRequest.getId() == null) {
             return ResponseEntity.badRequest().body(new MessageResponse("Task Id cant be 0"));
         }
@@ -84,6 +85,14 @@ public class TaskController {
         }
 
         return ResponseEntity.ok(taskUserDaoImpl.getTasks(taskRequest));
+    }
+
+    @PutMapping("/changeTaskResponsible")
+    public ResponseEntity changeTaskResponsible(@Valid @RequestBody TaskUserRequest taskUserRequest) {
+
+        taskUserDaoImpl.changeTaskResponsible(taskUserRequest);
+
+        return ResponseEntity.ok(new MessageResponse("User with id" + taskUserRequest.getUserId()  + "is responsible for that task now"));
     }
 
 }

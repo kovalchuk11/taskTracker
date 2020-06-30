@@ -66,8 +66,6 @@ public class TaskDaoImpl implements TaskDao {
         return jdbcTemplate.update(DELETE_TASK_SQL, taskId);
     }
 
-
-
     @Override
     public List<Task> getAllTasks() {
         return null;

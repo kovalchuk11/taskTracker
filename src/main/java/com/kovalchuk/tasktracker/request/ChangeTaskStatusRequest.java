@@ -1,9 +1,10 @@
 package com.kovalchuk.tasktracker.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class ChangeTaskStatusRequest {
-    @NotBlank
+    @NotNull
     private Long id;
 
     @NotBlank
