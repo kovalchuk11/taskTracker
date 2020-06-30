@@ -36,7 +36,7 @@ class TaskTrackerApplicationTests {
 				"    \"page\": 1\n" +
 				"}";
 
-		mvc.perform(MockMvcRequestBuilders.post("https://nameless-falls-13226.herokuapp.com/api/user/getUsers")
+		mvc.perform(MockMvcRequestBuilders.post("/api/user/getUsers")
 				.content(body).contentType(MediaType.APPLICATION_JSON)
 				.header("Authorization", TOKEN))
 				.andExpect(status().isOk());
