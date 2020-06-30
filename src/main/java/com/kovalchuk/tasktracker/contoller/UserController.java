@@ -1,7 +1,7 @@
 package com.kovalchuk.tasktracker.contoller;
 
 import com.kovalchuk.tasktracker.db.impl.UserDaoImpl;
-import com.kovalchuk.tasktracker.request.SignupRequest;
+import com.kovalchuk.tasktracker.request.UserRequest;
 import com.kovalchuk.tasktracker.response.MessageResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,8 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        int insertedRowsCount = userDaoImpl.addUser(signUpRequest);
+    public ResponseEntity registerUser(@Valid @RequestBody UserRequest userRequest) {
+        int insertedRowsCount = userDaoImpl.addUser(userRequest);
         if (insertedRowsCount == 0) {
             return ResponseEntity.badRequest().body(new MessageResponse("Something wrong"));
         } else
@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @PutMapping("/updateUser")
-    public ResponseEntity updateUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        int updatedRows = userDaoImpl.updateUser(signUpRequest);
+    public ResponseEntity updateUser(@Valid @RequestBody UserRequest userRequest) {
+        int updatedRows = userDaoImpl.updateUser(userRequest);
         if (updatedRows == 0) {
             return ResponseEntity.badRequest().body(new MessageResponse("Something wrong"));
         } else
@@ -37,11 +37,11 @@ public class UserController {
     }
 
     @DeleteMapping("/deleteUser")
-    public ResponseEntity deleteUser(@RequestBody SignupRequest signUpRequest) {
-        if (signUpRequest.getUserId() == null) {
+    public ResponseEntity deleteUser(@RequestBody UserRequest userRequest) {
+        if (userRequest.getUserId() == null) {
             return ResponseEntity.badRequest().body(new MessageResponse("userId can't be null"));
         }
-        int updatedRows = userDaoImpl.deleteUser(signUpRequest.getUserId());
+        int updatedRows = userDaoImpl.deleteUser(userRequest.getUserId());
         if (updatedRows == 0) {
             return ResponseEntity.badRequest().body(new MessageResponse("User is already deleted"));
         } else
@@ -49,16 +49,19 @@ public class UserController {
     }
 
     @PostMapping("/getUser")
-    public ResponseEntity getUserById(@RequestBody SignupRequest signUpRequest) {
-        if (signUpRequest.getUserId() == null) {
+    public ResponseEntity getUserById(@RequestBody UserRequest userRequest) {
+        if (userRequest.getUserId() == null) {
             return ResponseEntity.badRequest().body(new MessageResponse("userId can't be null"));
         }
-        return ResponseEntity.ok(userDaoImpl.getUser(signUpRequest.getUserId()));
+        return ResponseEntity.ok(userDaoImpl.getUser(userRequest.getUserId()));
     }
 
     @PostMapping("/getUsers")
-    public ResponseEntity getUsers(@RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity getUsers(@RequestBody UserRequest userRequest) {
+        if (userRequest.getPage() <= 0) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Enter the correct page"));
+        }
 
-        return ResponseEntity.ok(userDaoImpl.getAllUsers());
+        return ResponseEntity.ok(userDaoImpl.getAllUsers(userRequest.getPage()));
     }
 }

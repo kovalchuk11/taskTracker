@@ -2,7 +2,7 @@ package com.kovalchuk.tasktracker.db.impl;
 
 import com.kovalchuk.tasktracker.db.dao.UserDao;
 import com.kovalchuk.tasktracker.db.models.User;
-import com.kovalchuk.tasktracker.request.SignupRequest;
+import com.kovalchuk.tasktracker.request.UserRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,8 +22,9 @@ public class UserDaoImpl implements UserDao {
     private static String EMAIL = "EMAIL";
     private static String PASSWORD = "PASSWORD";
     private static String REGISTRATION_DATE = "REGISTRATION_DATE";
+    private static int PAGINATION = 10;
 
-    private static final String SELECT_ALL_USERS = String.format("SELECT * FROM TRACKER.USERS");
+    private static final String SELECT_ALL_USERS = String.format("SELECT * FROM TRACKER.USERS LIMIT %s OFFSET ?;", PAGINATION);
     private static final String INSERT_USER_SQL = String.format("INSERT INTO TRACKER.USERS (%s, %s, %s, %s, %s, %s) VALUES (?,?,?,?,?,?);", USERNAME, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, REGISTRATION_DATE);
     private static final String SELECT_USER_BY_USERNAME = String.format("SELECT * FROM TRACKER.USERS WHERE %s = ?", USERNAME);
     private static final String UPDATE_USER_SQL = String.format("UPDATE TRACKER.USERS SET %s = (?), %s = (?), %s = (?), %s = (?), %s = (?) WHERE %s = (?);", USERNAME, FIRST_NAME, LAST_NAME, EMAIL, PASSWORD, USER_ID);
@@ -41,13 +42,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int addUser(SignupRequest user) {
+    public int addUser(UserRequest user) {
         return jdbcTemplate.update(INSERT_USER_SQL, user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), passwordEncoder.encode(user.getPassword()),
                 Timestamp.valueOf(LocalDateTime.now()));
     }
 
     @Override
-    public int updateUser(SignupRequest user) {
+    public int updateUser(UserRequest user) {
         return jdbcTemplate.update(UPDATE_USER_SQL, user.getUsername(), user.getFirstName(), user.getLastName(), user.getEmail(), passwordEncoder.encode(user.getPassword()), user.getUserId());
     }
 
@@ -74,13 +75,13 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers(int page) {
         return jdbcTemplate.query(SELECT_ALL_USERS, (rs, rowNum) ->
                 new User(rs.getLong(USER_ID)
                         , rs.getString(USERNAME)
                         , rs.getString(FIRST_NAME)
                         , rs.getString(LAST_NAME)
                         , rs.getString(EMAIL)
-                        , rs.getTimestamp(REGISTRATION_DATE).toLocalDateTime()));
+                        , rs.getTimestamp(REGISTRATION_DATE).toLocalDateTime()), page * PAGINATION - PAGINATION);
     }
 }

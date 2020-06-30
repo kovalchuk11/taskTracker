@@ -5,7 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 
-public class SignupRequest {
+public class UserRequest {
     private Long userId;
 
     @NotBlank
@@ -25,6 +25,16 @@ public class SignupRequest {
     private String password;
 
     private Date registrationDate;
+
+    private int page;
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
 
     public String getUsername() {
         return username;

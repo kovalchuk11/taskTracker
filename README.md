@@ -95,14 +95,13 @@ Indicate user id
 }
 ```
  - #### Get users list
- pagination has not yet been implemented
   
  /api/user/getUsers
  
  POST requests with body:
 ```json
 {
-    "pagination": 1
+    "page": 1
 }
 ```
  ## - Task endpoint:
