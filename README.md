@@ -98,6 +98,8 @@ Indicate user id
   
  /api/user/getUsers
  
+ Pagination limit: 10 users per page
+ 
  POST requests with body:
 ```json
 {
