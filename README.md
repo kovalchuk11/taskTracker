@@ -162,5 +162,5 @@ Sorting by new / old users by'desc' or 'asc'
   in the process of development.
   
   
-  Be sure that I know how to implement unresolved features. Unfortunately, there was not enough time for them and tests. I would be very grateful if you looked at the code and write me what needs to be fixed. Professional opinion is very important to me.
+ I would be very grateful if you looked at the code and write me what needs to be fixed. Professional opinion is very important to me.
   
